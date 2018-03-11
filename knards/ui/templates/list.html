@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Cards
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {% include 'components/spinner/spinner.html' %}
+    {% include 'components/navbar/navbar.html' %}
+    {% include 'components/tags-selector/tags-selector.html' %}
+    {% include 'components/date-selector/date-selector.html' %}
+    {% include 'components/sort-list/sort-list.html' %}
+    {% include 'components/list-guts/list-guts.html' %}
+{% endblock %}

@@ -1,0 +1,97 @@
+.gl_blk-wrp {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.gl_blk {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.gl_input {
+    padding: 3px;
+
+    color: map-get($cl_schema, bg);
+    background-color: map-get($cl_schema, fg);
+
+    border-radius: 1px;
+    box-shadow: 1px 1px 0px 2px map-get($cl_schema, drk);
+}
+
+.gl_input-green {
+    background-color: map-get($cl_schema, input_green) !important;
+}
+
+.gl_input-red {
+    background-color: map-get($cl_schema, input_red) !important;
+}
+
+.gl_tag-include,
+.gl_tag-include-strict,
+.gl_tag-exclude {
+    display: inline-block;
+
+    margin: 0 4px 0 0;
+    padding: 0 4px;
+
+    color: map-get($cl_schema, fg);
+
+    cursor: pointer;
+    border-radius: 1px;
+
+    transition: background-color .1s linear, box-shadow .1s linear;
+
+    &:hover {
+        transition: background-color .1s linear, box-shadow .1s linear;
+    }
+}
+
+.gl_tag-include {
+    background-color: map-get($cl_schema, n_green);
+    box-shadow: 0px 0px 0px 1px map-get($cl_schema, n_green);
+
+    &:hover {
+        background-color: map-get($cl_schema, h_green);
+        box-shadow: 0px 0px 0px 1px map-get($cl_schema, h_green);
+    }
+}
+
+.gl_tag-exclude {
+    background-color: map-get($cl_schema, n_red);
+    box-shadow: 0px 0px 0px 1px map-get($cl_schema, n_red);
+
+    &:hover {
+        background-color: map-get($cl_schema, h_red);
+        box-shadow: 0px 0px 0px 1px map-get($cl_schema, h_red);
+    }
+}
+
+.gl_tag-include-strict {
+    color: map-get($cl_schema, bg);
+
+    background-color: map-get($cl_schema, n_yellow);
+    box-shadow: 0px 0px 0px 1px map-get($cl_schema, n_yellow);
+
+    &:hover {
+        background-color: map-get($cl_schema, h_yellow);
+        box-shadow: 0px 0px 0px 1px map-get($cl_schema, h_yellow);
+    }
+}
+
+.gl_tag {
+    display: inline-block;
+
+    margin: 4px 4px 0 0;
+    padding: 0 4px;
+
+    color: map-get($cl_schema, fg);
+
+    background-color: map-get($cl_schema, n_green);
+    box-shadow: 0px 0px 0px 1px map-get($cl_schema, n_green);
+
+    border-radius: 1px;
+}

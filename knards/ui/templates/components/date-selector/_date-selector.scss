@@ -1,0 +1,55 @@
+.date-selector {
+    .lc_blk {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        margin: 20px 0 20px -16px;
+    }
+
+    .l-from {
+        margin: 0 10px 0 0;
+    }
+
+    .l-to {
+        margin: 0 10px;
+    }
+
+    &_input {
+        width: 100%;
+        max-width: 110px;
+    }
+
+    input {
+        height: 100%;
+        width: 100%;
+
+        font-size: 100%;
+        font-family: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+
+        background-color: transparent;
+        border: 0px solid transparent;
+    }
+
+    .date-selector-create_wrp,
+    .date-selector-edit_wrp {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        margin: 0 10px 0 0;
+        padding: 16px;
+        width: 330px;
+
+        border: 1px solid map-get($cl_schema, gr);
+        border-radius: 2px;
+
+        & > i {
+            flex: 1 0 100%;
+
+            margin: 0 10px 10px 0;
+        }
+    }
+}

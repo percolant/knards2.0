@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Card
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    {% include 'components/spinner/spinner.html' %}
+    {% include 'components/navbar/navbar.html' %}
+    {% include 'components/tags-selector/tags-selector.html' %}
+    {% include 'components/card-guts/card-guts.html' %}
+{% endblock %}

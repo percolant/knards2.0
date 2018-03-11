@@ -1,0 +1,74 @@
+.list-stats {
+    .lc_blk {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .list-stats-title {
+        margin: 30px 0 0 0;
+
+        font-size: 140%;
+    }
+
+    .list-stats-list {
+        margin: 50px 0 50px 20px;
+
+        list-style: none;
+
+        li {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        span {
+            display: inline-block;
+            margin-left: 20px;
+
+            font-weight: 700;
+        }
+    }
+
+    .revise-go-btn {
+        position: relative;
+
+        align-self: flex-start;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        margin: 10px 0 50px 20px;
+        padding: 2px 7px;
+
+        font-size: 140%;
+        color: map-get($cl_schema, fg);
+        background-color: map-get($cl_schema, inactive_button_bg);
+        border: none;
+        border-radius: 1px;
+        box-shadow: 1px 1px 0px 1px map-get($cl_schema, drk);
+
+        transition: all .1s linear;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: map-get($cl_schema, active_button_bg);
+            text-shadow: 0px 0px 1px map-get($cl_schema, fg);
+            transition: all .1s linear;
+        }
+
+        &:active {
+            position: relative;
+            transform: translate(1px, 1px);
+
+            background-color: map-get($cl_schema, active_button_bg);
+            box-shadow: none;
+
+            transition: all .1s linear;
+        }
+    }
+}

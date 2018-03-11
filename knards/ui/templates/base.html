@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} | KNARDS</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'jquery-ui/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'knards.css' %}">
+</head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'jquery-ui/jquery-ui.min.js' %}"></script>
+    <script>
+        window.user_id = {{ user.id }}
+    </script>
+    <script src="{% static 'knards.js' %}"></script>
+</body>
+</html>

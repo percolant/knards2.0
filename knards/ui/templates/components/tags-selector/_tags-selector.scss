@@ -1,0 +1,63 @@
+.tags-selector {
+    .lc_blk {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    label {
+        margin: 0 10px 0 0;
+    }
+
+    &_input {
+        width: 100%;
+    }
+
+    .easy-autocomplete {
+        position: relative;
+
+        display: inline-block;
+
+        width: 320px;
+
+        input {
+            height: 100%;
+            width: 100%;
+
+            font-size: 100%;
+            font-family: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+
+            background-color: transparent;
+            border: 0px solid transparent;
+        }
+    }
+
+    .easy-autocomplete-container {
+        position: absolute;
+        z-index: 9998;
+        top: 30px;
+
+        ul {
+            display: none;
+
+            color: map-get($cl_schema, bg);
+            background-color: map-get($cl_schema, fg);
+            border-radius: 1px;
+            box-shadow: 1px 1px 0px 2px map-get($cl_schema, drk);
+
+            list-style: none;
+
+            li {
+                padding: 7px 7px;
+
+                cursor: pointer;
+
+                &.selected {
+                    color: map-get($cl_schema, fg);
+                    background-color: map-get($cl_schema, gr);
+                }
+            }
+        }
+    }
+}

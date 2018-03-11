@@ -1,0 +1,157 @@
+.list-guts {
+    .lc_blk {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        margin: 20px 0 0 0;
+    }
+
+    .list-contents_wrp {
+        width: 100%;
+    }
+
+    a:link,
+    a:visited,
+    a:active {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .card {
+        display: block;
+
+        padding: 10px 15px;
+
+        &:hover {
+            & + .manipulate {
+                opacity: 1;
+                transition: all .1s linear;
+            }
+        }
+    }
+
+    .card_wrp {
+        position: relative;
+
+        margin: 10px 5px;
+        width: 100%;
+
+        border: 1px solid map-get($cl_schema, fg);
+        border-radius: 2px;
+
+        cursor: pointer;
+
+        transition: all .1s linear;
+
+        &:hover {
+            background-color: lighten(map-get($cl_schema, bg), 5%);
+            transition: all .1s linear;
+        }
+    }
+
+    .card-title {
+        font-size: 140%;
+    }
+
+    .card-create-date,
+    .card-edit-date {
+        display: inline-block;
+
+        margin: 0 20px 0 0;
+
+        color: map-get($cl_schema, gr);
+        text-shadow: none;
+    }
+
+    .card-tags {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        list-style: none;
+
+        li {
+            margin: 0 20px 0 0;
+
+            color: map-get($cl_schema, n_green);
+            text-shadow: none;
+        }
+    }
+
+    .manipulate {
+        position: absolute;
+        top: 50%;
+        right: -70px;
+        transform: translate(0, -50%);
+
+        padding: 25px;
+
+        opacity: 0;
+        transition: all .1s linear;
+
+        .delete {
+            padding: 5px;
+
+            i {
+                font-size: 140%;
+                transition: all .1s linear;
+            }
+
+            &:hover {
+                i {
+                    text-shadow: 0px 0px 1px map-get($cl_schema, fg);
+                    transition: all .1s linear;
+                }
+            }
+        }
+
+        &:hover {
+            opacity: 1;
+            transition: all .1s linear;
+        }
+    }
+
+    .load-more-btn {
+        position: relative;
+
+        align-self: center;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        margin: 10px 0 50px;
+        padding: 2px 7px;
+
+        background-color: map-get($cl_schema, inactive_button_bg);
+        border-radius: 1px;
+        box-shadow: 1px 1px 0px 1px map-get($cl_schema, drk);
+
+        transition: all .1s linear;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: map-get($cl_schema, active_button_bg);
+            text-shadow: 0px 0px 1px map-get($cl_schema, fg);
+            transition: all .1s linear;
+        }
+
+        &:active {
+            position: relative;
+            transform: translate(1px, 1px);
+
+            background-color: map-get($cl_schema, active_button_bg);
+            box-shadow: none;
+
+            transition: all .1s linear;
+        }
+
+        &.invisible {
+            display: none;
+        }
+    }
+}

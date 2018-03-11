@@ -1,0 +1,16 @@
+{
+    "esversion": 6,
+    "browser"  : true,
+    "jquery"   : true,
+    "devel"    : true,
+    "latedef"  : true,
+    "maxdepth" : 3,
+    "newcap"   : true,
+    "noarg"    : true,
+    "noempty"  : true,
+    "trailing" : true,
+    "undef"    : true,
+    "unused"   : true,
+    "sub"      : true,
+    "node"     : true
+}
