@@ -167,8 +167,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.replace(/\.|,/g, '');
-        var answer_fix = answer.replace(/\.|,/g, '');
+        var trial_fix = trial.replace(/\t|\r\n|\n|\.|,/g, ' ').replace(/\s+/g, ' ');
+        var answer_fix = answer.replace(/\t|\r\n|\n|\.|,/g, ' ').replace(/\s+/g, ' ');
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -202,8 +202,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.replace(/\.|,/g, '');
-        var answer_fix = answer.replace(/\.|,/g, '');
+        var trial_fix = trial.replace(/\t|\r\n|\n|\.|,/g, ' ').replace(/\s+/g, ' ');
+        var answer_fix = answer.replace(/\t|\r\n|\n|\.|,/g, ' ').replace(/\s+/g, ' ');
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -237,8 +237,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.replace(/\.|,/g, '');
-        var answer_fix = answer.replace(/\.|,/g, '');
+        var trial_fix = trial.replace(/\t|\r\n|\n|\.|,/g, ' ').replace(/\s+/g, ' ');
+        var answer_fix = answer.replace(/\t|\r\n|\n|\.|,/g, ' ').replace(/\s+/g, ' ');
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
