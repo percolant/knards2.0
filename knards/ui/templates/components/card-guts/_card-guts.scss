@@ -235,7 +235,7 @@
     }
 
     .entries_wrp {
-        margin: 20px 0 0 0;
+        margin: 20px 0 40px 0;
         width: 100%;
 
         .entry {
@@ -297,7 +297,7 @@
 
                 input {
                     width: 100%;
-                    
+
                     color: map-get($cl_schema, fg);
                     background-color: transparent;
                     border: none;
