@@ -5,7 +5,7 @@ var Pikaday = require('pikaday');
 import { recountEntryOrder, createEntry, deleteLoadedCards, checkAnswer, deleteLoadedEntries } from './aux';
 import { _get_card, _get_card_list, _create_new_card, _save_card_meta, _delete_card, _save_tags, _clean_up_tag, _save_all_entries, _save_entry, _delete_entry, _save_score } from './api';
 
-var host = 'http://0.0.0.0:8000';
+var host = 'http://0.0.0.0:7999';
 
 $(document).ready(function() {
     window.can_save = false;
@@ -154,6 +154,10 @@ $(document).ready(function() {
 
         $('.revise-submit-btn').on('click', function() {
             if ($(this).text() == 'End') {
+                if (window.card_id == undefined) {
+                    window.location.replace('/revise/');
+                    return undefined;
+                }
                 _save_score('last');
                 return undefined;
             }
