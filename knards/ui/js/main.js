@@ -172,13 +172,21 @@ $(document).ready(function() {
         });
 
         $(document).on('click', '.show-hidden', function() {
-            $(this).parent().parent().find('.prompt-textarea').css('display', 'none');
-            $(this).parent().parent().find('.entry-textarea').css('display', 'initial');
-            autosize($(this).parent().parent().find('.entry-textarea'));
-            autosize.update($(this).parent().parent().find('.entry-textarea'));
-            $(this).parent().parent().find('.gl_input').addClass('gl_input-red');
-            $(this).parent().parent().find('.gl_input').attr('data-check', '0');
-            $(this).parent().parent().find('.entry-menu').css('display', 'none');
+            if ($(this).parent().parent().attr('data-entry-type') == '3' || $(this).parent().parent().attr('data-entry-type') == '6') {
+                $(this).parent().parent().find('.prompt-textarea').css('display', 'none');
+                $(this).parent().parent().find('.entry-textarea').css('display', 'initial');
+                autosize($(this).parent().parent().find('.entry-textarea'));
+                autosize.update($(this).parent().parent().find('.entry-textarea'));
+                $(this).parent().parent().find('.gl_input').addClass('gl_input-red');
+                $(this).parent().parent().find('.gl_input').attr('data-check', '0');
+                $(this).parent().parent().find('.entry-menu').css('display', 'none');
+            } else {
+                $(this).parent().parent().find('.entry-textarea').css('display', 'initial');
+                $(this).parent().parent().find('.entry-textarea').addClass('shown');
+                autosize($(this).parent().parent().find('.entry-textarea'));
+                autosize.update($(this).parent().parent().find('.entry-textarea'));
+                $(this).parent().parent().find('.entry-menu').css('display', 'none');
+            }
         });
     }
 
