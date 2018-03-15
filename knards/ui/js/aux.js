@@ -18,7 +18,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -41,7 +41,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -68,7 +68,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
             autosize.update($(newElement).find('.prompt-textarea'));
         }
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -86,7 +86,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -109,7 +109,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -136,7 +136,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
             autosize.update($(newElement).find('.prompt-textarea'));
         }
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
