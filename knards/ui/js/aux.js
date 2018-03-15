@@ -196,6 +196,11 @@ module.exports.checkAnswer = function(element) {
 
         $(element).find('.gl_input').addClass('gl_input-green');
         $(element).find('.gl_input').attr('data-check', '1');
+        $(element).find('.prompt-textarea').removeClass('shown');
+        $(element).find('.entry-textarea').addClass('shown');
+        $(element).find('.entry-menu').css('display', 'none');
+        autosize($(element).find('.entry-textarea'));
+        autosize.update($(element).find('.entry-textarea'));
         return true;
     };
     if ($(element).attr('data-entry-rule') == '2') {
@@ -231,6 +236,11 @@ module.exports.checkAnswer = function(element) {
 
         $(element).find('.gl_input').addClass('gl_input-green');
         $(element).find('.gl_input').attr('data-check', '1');
+        $(element).find('.prompt-textarea').removeClass('shown');
+        $(element).find('.entry-textarea').addClass('shown');
+        $(element).find('.entry-menu').css('display', 'none');
+        autosize($(element).find('.entry-textarea'));
+        autosize.update($(element).find('.entry-textarea'));
         return true;
     };
     if ($(element).attr('data-entry-rule') == '3') {
@@ -264,6 +274,11 @@ module.exports.checkAnswer = function(element) {
 
         $(element).find('.gl_input').addClass('gl_input-green');
         $(element).find('.gl_input').attr('data-check', '1');
+        $(element).find('.prompt-textarea').removeClass('shown');
+        $(element).find('.entry-textarea').addClass('shown');
+        $(element).find('.entry-menu').css('display', 'none');
+        autosize($(element).find('.entry-textarea'));
+        autosize.update($(element).find('.entry-textarea'));
         return true;
     };
 };
