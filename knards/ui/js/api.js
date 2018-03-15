@@ -1,7 +1,7 @@
 import { createEntry, addADay, formatDate } from './aux';
 import { _get_card, _get_card_list, _create_new_card, _save_card_meta, _delete_card, _save_tags, _clean_up_tag, _save_all_entries, _save_entry, _delete_entry, _save_score } from './api';
 
-var host = 'http://0.0.0.0:7999';
+var host = 'http://0.0.0.0:8000';
 
 module.exports._get_card = function() {
     // if no card_id set, redirect to /list/
