@@ -102,7 +102,7 @@ class CardsRenderedList(APIView):
                 cards = cards.exclude(tags__in=tags_excluded_list).distinct()
             if tags_included_strict:
                 for tag in tags_included_strict_list:
-                    cards = cards.filter(tags__id__contains=tag).distinct()
+                    cards = cards.filter(tags__id=tag).distinct()
 
         if request.data['date_create_from']:
             cards = cards.filter(create_date__gte=time.strftime(request.data['date_create_from'])).distinct()
