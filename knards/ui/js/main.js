@@ -525,7 +525,7 @@ $(document).on('blur', '[name="hint"]', function() {
 });
 
 // tab to tab when inside a textarea
-$(document).delegate('.entry-textarea', 'keydown', function(e) {
+$(document).delegate('.entry-textarea, .prompt-textarea', 'keydown', function(e) {
     var keyCode = e.keyCode || e.which;
 
     if (keyCode == 9) {
