@@ -5,7 +5,7 @@ var Pikaday = require('pikaday');
 import { recountEntryOrder, createEntry, deleteLoadedCards, checkAnswer, deleteLoadedEntries } from './aux';
 import { _get_card, _get_card_list, _create_new_card, _save_card_meta, _delete_card, _save_tags, _clean_up_tag, _save_all_entries, _save_entry, _delete_entry, _save_score } from './api';
 
-var host = 'http://0.0.0.0:8000';
+var host = 'http://0.0.0.0:7999';
 
 $(document).ready(function() {
     window.can_save = false;
@@ -154,6 +154,10 @@ $(document).ready(function() {
 
         $('.revise-submit-btn').on('click', function() {
             if ($(this).text() == 'End') {
+                if (window.card_id == undefined) {
+                    window.location.replace('/revise/');
+                    return undefined;
+                }
                 _save_score('last');
                 return undefined;
             }
@@ -168,13 +172,21 @@ $(document).ready(function() {
         });
 
         $(document).on('click', '.show-hidden', function() {
-            $(this).parent().parent().find('.prompt-textarea').css('display', 'none');
-            $(this).parent().parent().find('.entry-textarea').css('display', 'initial');
-            autosize($(this).parent().parent().find('.entry-textarea'));
-            autosize.update($(this).parent().parent().find('.entry-textarea'));
-            $(this).parent().parent().find('.gl_input').addClass('gl_input-red');
-            $(this).parent().parent().find('.gl_input').attr('data-check', '0');
-            $(this).parent().parent().find('.entry-menu').css('display', 'none');
+            if ($(this).parent().parent().attr('data-entry-type') == '3' || $(this).parent().parent().attr('data-entry-type') == '6') {
+                $(this).parent().parent().find('.prompt-textarea').css('display', 'none');
+                $(this).parent().parent().find('.entry-textarea').css('display', 'initial');
+                autosize($(this).parent().parent().find('.entry-textarea'));
+                autosize.update($(this).parent().parent().find('.entry-textarea'));
+                $(this).parent().parent().find('.gl_input').addClass('gl_input-red');
+                $(this).parent().parent().find('.gl_input').attr('data-check', '0');
+                $(this).parent().parent().find('.entry-menu').css('display', 'none');
+            } else {
+                $(this).parent().parent().find('.entry-textarea').css('display', 'initial');
+                $(this).parent().parent().find('.entry-textarea').addClass('shown');
+                autosize($(this).parent().parent().find('.entry-textarea'));
+                autosize.update($(this).parent().parent().find('.entry-textarea'));
+                $(this).parent().parent().find('.entry-menu').css('display', 'none');
+            }
         });
     }
 
@@ -513,7 +525,7 @@ $(document).on('blur', '[name="hint"]', function() {
 });
 
 // tab to tab when inside a textarea
-$(document).delegate('.entry-textarea', 'keydown', function(e) {
+$(document).delegate('.entry-textarea, .prompt-textarea', 'keydown', function(e) {
     var keyCode = e.keyCode || e.which;
 
     if (keyCode == 9) {

@@ -1,7 +1,7 @@
 import { createEntry, addADay, formatDate } from './aux';
 import { _get_card, _get_card_list, _create_new_card, _save_card_meta, _delete_card, _save_tags, _clean_up_tag, _save_all_entries, _save_entry, _delete_entry, _save_score } from './api';
 
-var host = 'http://0.0.0.0:8000';
+var host = 'http://0.0.0.0:7999';
 
 module.exports._get_card = function() {
     // if no card_id set, redirect to /list/
@@ -37,14 +37,15 @@ module.exports._get_card = function() {
         // Fill in the card name
         $('.card-name_input').text(data.title);
 
-        // Fill in tags
-        for (let i = 0; i < data.tags.length; i++) {
-            // visuals
-            $('<span class="gl_tag-include">' + data.tags[i].tag_name + '</span>').insertBefore($('#tags-selector').closest('.easy-autocomplete'));
+        // Fill in tags if not revising
+        if (!window.revising)
+            for (let i = 0; i < data.tags.length; i++) {
+                // visuals
+                $('<span class="gl_tag-include">' + data.tags[i].tag_name + '</span>').insertBefore($('#tags-selector').closest('.easy-autocomplete'));
 
-            // logic
-            window.tagsIncluded.push(data.tags[i].tag_name);
-        }
+                // logic
+                window.tagsIncluded.push(data.tags[i].tag_name);
+            }
 
         // The rest of meta
         if (data.is_private) $('#checkbox-private').prop('checked', true);
@@ -204,10 +205,18 @@ module.exports._get_card_list = function(tags_included, tags_excluded, tags_incl
             $('#list-stats-are-right').text(String(Math.round(Math.round((((know / data.length) * 100)) * 100) / 10) / 10) + '%');
 
             var revision_dates = [];
+            var today = new Date();
+            today = today.setHours(0,0,0,0);
+            var to_revise = 0;
+            var not_yet_revised = false;
             for (let i = 0; i < data.length; i++) {
                 if (data[i].score.length != 0) {
                     var revise_date = new Date(data[i].score[0].revise_date);
                     revision_dates.push(revise_date.getTime());
+                    if (today > revise_date.getTime()) to_revise++;
+                } else {
+                    to_revise++;
+                    not_yet_revised = true;
                 }
             }
 
@@ -216,43 +225,64 @@ module.exports._get_card_list = function(tags_included, tags_excluded, tags_incl
                 var earliest = new Date(revision_dates[0]);
                 var most_recent = new Date(revision_dates[revision_dates.length-1]);
                 $('#list-stats-oldest-revision').text(formatDate(earliest));
+                if (not_yet_revised) $('#list-stats-oldest-revision').text($('#list-stats-oldest-revision').text() + ' (there\'re cards that haven\'t been revised yet)');
                 $('#list-stats-recent-revision').text(formatDate(most_recent));
+                $('#list-stats-amount-to-revise').text(to_revise);
             } else {
                 $('#list-stats-oldest-revision').text('No revisions');
                 $('#list-stats-recent-revision').text('No revisions');
+                $('#list-stats-amount-to-revise').text(data.length);
             }
         } else if (window.mode == 'revise-run') {
-            window.revising = true;
-
-            $('.tags-selector').css('display', 'none');
-            $('.date-selector').css('display', 'none');
-            $('.list-stats').css('display', 'none');
-            $('.revise-guts').css('display', 'flex');
-
-            var tagline = '';
-            for (let i = 0; i < data[0].tags.length; i++)
-                tagline += '<span class="gl_tag">' + data[0].tags[i].tag_name + '</span>';
-            $('.tags_wrp').html(tagline);
-
-            var edit_date = new Date(data[0].update_date);
-            $('#card-stats-create-date').text(formatDate(edit_date));
-            if (data[0].is_creator_hidden) $('#card-stats-creator').text('hidden');
-            else $('#card-stats-creator').text(data[0].user.username);
-            $('#card-stats-count-seen').text(data[0].count_seen);
-            $('#card-stats-count-know').text(data[0].count_know);
-
-            if (data[0].score.length != 0) {
-                var revise_date = new Date(data[0].score[0].revise_date);
-                $('#card-stats-revise-date').text(formatDate(revise_date));
-                window.revision = data[0].score[0].id;
-            } else {
-                $('#card-stats-revise-date').text('Never');
+            try {
+                var data_not_serial = JSON.parse(data);
             }
+            catch(err) {
+                var data_not_serial = {"results": "cards"};
+            }
+            if (data_not_serial.results == 'no cards') {
+                $('.card-name_input').text('');
 
-            window.can_save = true;
+                $('.tags-selector').css('display', 'none');
+                $('.date-selector').css('display', 'none');
+                $('.list-stats').css('display', 'none');
+                $('.revise-guts').css('display', 'flex');
 
-            window.card_id = data[0].id;
-            _get_card();
+                if (!$('.load-more-btn').hasClass('invisible')) $('.load-more-btn').addClass('invisible');
+                $('.revise-submit-btn').text('End');
+            } else {
+                window.revising = true;
+
+                $('.tags-selector').css('display', 'none');
+                $('.date-selector').css('display', 'none');
+                $('.list-stats').css('display', 'none');
+                $('.revise-guts').css('display', 'flex');
+
+                var tagline = '';
+                for (let i = 0; i < data[0].tags.length; i++)
+                    tagline += '<span class="gl_tag">' + data[0].tags[i].tag_name + '</span>';
+                $('.tags_wrp').html(tagline);
+
+                var edit_date = new Date(data[0].update_date);
+                $('#card-stats-create-date').text(formatDate(edit_date));
+                if (data[0].is_creator_hidden) $('#card-stats-creator').text('hidden');
+                else $('#card-stats-creator').text(data[0].user.username);
+                $('#card-stats-count-seen').text(data[0].count_seen);
+                $('#card-stats-count-know').text(data[0].count_know);
+
+                if (data[0].score.length != 0) {
+                    var revise_date = new Date(data[0].score[0].revise_date);
+                    $('#card-stats-revise-date').text(formatDate(revise_date));
+                    window.revision = data[0].score[0].id;
+                } else {
+                    $('#card-stats-revise-date').text('Never');
+                }
+
+                window.can_save = true;
+
+                window.card_id = data[0].id;
+                _get_card();
+            }
         }
 
         window.can_save = true;

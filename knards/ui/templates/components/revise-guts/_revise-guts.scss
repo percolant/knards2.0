@@ -85,6 +85,10 @@
 
                     resize: none;
                     pointer-events: none;
+
+                    &:disabled {
+                        color: map-get($cl_schema, bg);
+                    }
                 }
             }
 
@@ -116,7 +120,7 @@
 
                 input {
                     width: 100%;
-                    
+
                     color: map-get($cl_schema, fg);
                     background-color: transparent;
                     border: none;

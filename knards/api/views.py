@@ -1,4 +1,5 @@
 import time
+import datetime
 import json
 from django.core.paginator import Paginator
 from rest_framework import status
@@ -101,7 +102,7 @@ class CardsRenderedList(APIView):
                 cards = cards.exclude(tags__in=tags_excluded_list).distinct()
             if tags_included_strict:
                 for tag in tags_included_strict_list:
-                    cards = cards.filter(tags__id__contains=tag).distinct()
+                    cards = cards.filter(tags__id=tag).distinct()
 
         if request.data['date_create_from']:
             cards = cards.filter(create_date__gte=time.strftime(request.data['date_create_from'])).distinct()
@@ -138,7 +139,10 @@ class CardsRenderedList(APIView):
         elif request.data['mode'] == 'revise-run':
             for card in cards:
                 card.score.set(Score.objects.filter(card=card.pk, user=request.user.id))
+            cards = cards.exclude(score__revise_date__gte=datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).isoformat())
             cards = cards.order_by('score__is_right', 'score__revise_date')
+            if len(cards) < 1:
+                return Response(json.dumps({"results": "no cards"}), status=status.HTTP_200_OK)
             p = Paginator(cards, 1)
             serializer = CardsRenderedSerializer(cards, many=True)
             if p.page(request.data['page']).has_next():

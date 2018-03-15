@@ -8,7 +8,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         if (mode == 'edit')
             var element = '<div class="entry open-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_visible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
         else
-            var element = '<div class="entry open-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea></div><div class="entry-menu"></div></div>';
+            var element = '<div class="entry open-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea></div><div class="entry-menu"></div></div>';
 
         window.order++;
 
@@ -18,7 +18,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -26,7 +26,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         if (mode == 'edit')
             var element = '<div class="entry hidden-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_invisible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
         else
-            var element = '<div class="entry hidden-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
+            var element = '<div class="entry hidden-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
 
         window.order++;
 
@@ -41,7 +41,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -49,7 +49,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         if (mode == 'edit')
             var element = '<div class="entry prompt-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
         else
-            var element = '<div class="entry prompt-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea><textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
+            var element = '<div class="entry prompt-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea><textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
 
         window.order++;
 
@@ -68,7 +68,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
             autosize.update($(newElement).find('.prompt-textarea'));
         }
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -76,7 +76,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         if (mode == 'edit')
             var element = '<div class="entry open-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_visible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
         else
-            var element = '<div class="entry open-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea></div><div class="entry-menu"></div></div>';
+            var element = '<div class="entry open-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea></div><div class="entry-menu"></div></div>';
 
         window.order++;
 
@@ -86,7 +86,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -94,7 +94,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         if (mode == 'edit')
             var element = '<div class="entry hidden-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_invisible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
         else
-            var element = '<div class="entry hidden-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
+            var element = '<div class="entry hidden-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
 
         window.order++;
 
@@ -109,7 +109,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         autosize($(newElement).find('.entry-textarea'));
         autosize.update($(newElement).find('.entry-textarea'));
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -117,7 +117,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         if (mode == 'edit')
             var element = '<div class="entry prompt-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
         else
-            var element = '<div class="entry prompt-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea><textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
+            var element = '<div class="entry prompt-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea><textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
 
         window.order++;
 
@@ -136,7 +136,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
             autosize.update($(newElement).find('.prompt-textarea'));
         }
 
-        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 10);
+        $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
         _save_entry(newElement);
     }
@@ -167,8 +167,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.replace(/\.|,/g, '');
-        var answer_fix = answer.replace(/\.|,/g, '');
+        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
+        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -196,14 +196,19 @@ module.exports.checkAnswer = function(element) {
 
         $(element).find('.gl_input').addClass('gl_input-green');
         $(element).find('.gl_input').attr('data-check', '1');
+        $(element).find('.prompt-textarea').removeClass('shown');
+        $(element).find('.entry-textarea').addClass('shown');
+        $(element).find('.entry-menu').css('display', 'none');
+        autosize($(element).find('.entry-textarea'));
+        autosize.update($(element).find('.entry-textarea'));
         return true;
     };
     if ($(element).attr('data-entry-rule') == '2') {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.replace(/\.|,/g, '');
-        var answer_fix = answer.replace(/\.|,/g, '');
+        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
+        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -231,14 +236,19 @@ module.exports.checkAnswer = function(element) {
 
         $(element).find('.gl_input').addClass('gl_input-green');
         $(element).find('.gl_input').attr('data-check', '1');
+        $(element).find('.prompt-textarea').removeClass('shown');
+        $(element).find('.entry-textarea').addClass('shown');
+        $(element).find('.entry-menu').css('display', 'none');
+        autosize($(element).find('.entry-textarea'));
+        autosize.update($(element).find('.entry-textarea'));
         return true;
     };
     if ($(element).attr('data-entry-rule') == '3') {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.replace(/\.|,/g, '');
-        var answer_fix = answer.replace(/\.|,/g, '');
+        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
+        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -264,6 +274,11 @@ module.exports.checkAnswer = function(element) {
 
         $(element).find('.gl_input').addClass('gl_input-green');
         $(element).find('.gl_input').attr('data-check', '1');
+        $(element).find('.prompt-textarea').removeClass('shown');
+        $(element).find('.entry-textarea').addClass('shown');
+        $(element).find('.entry-menu').css('display', 'none');
+        autosize($(element).find('.entry-textarea'));
+        autosize.update($(element).find('.entry-textarea'));
         return true;
     };
 };
