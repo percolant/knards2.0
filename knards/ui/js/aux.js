@@ -167,8 +167,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
-        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
+        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -207,8 +207,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
-        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
+        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -247,8 +247,8 @@ module.exports.checkAnswer = function(element) {
         var trial = $(element).find('.prompt-textarea').val();
         var answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
-        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ');
+        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 

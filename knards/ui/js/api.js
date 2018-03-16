@@ -862,7 +862,7 @@ module.exports._save_score = function(proc='running') {
     $('[data-check]').each(function() {
         if ($(this).attr('data-check') == '0') is_right = false;
     });
-    if ($('[data-check]').length < 1) is_right = false;
+    if ($('[data-check]').length != $('.prompt-textarea').length) is_right = false;
 
     // Check if we're create a new entry or updating an existing one
     if (typeof window.revision === 'undefined')
