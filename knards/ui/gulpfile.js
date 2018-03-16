@@ -17,6 +17,7 @@ var babelify             = require('babelify');
 var source               = require('vinyl-source-stream');
 var buffer               = require('vinyl-buffer');
 var preset_es2015        = require('babel-preset-es2015');
+var minify               = require('babel-preset-minify');
 var plugin_destructuring = require('babel-plugin-transform-es2015-destructuring');
 var plugin_parameters    = require('babel-plugin-transform-es2015-parameters');
 var plugin_spread        = require('babel-plugin-transform-object-rest-spread');
@@ -65,7 +66,8 @@ gulp.task('scripts', ['lint'], function() {
         })
         .transform("babelify", {
             presets: [
-                preset_es2015
+                preset_es2015,
+                minify
             ],
             plugins: [
                 plugin_destructuring,
@@ -81,7 +83,7 @@ gulp.task('scripts', ['lint'], function() {
         .pipe(source('main.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init())
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(rename('knards.js'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(config.js.output));
