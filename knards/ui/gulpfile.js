@@ -83,7 +83,6 @@ gulp.task('scripts', ['lint'], function() {
         .pipe(source('main.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init())
-        // .pipe(uglify())
         .pipe(rename('knards.js'))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(config.js.output));
