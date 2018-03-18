@@ -1,16 +1,31 @@
 var autosize = require('autosize');
 
 import { _save_entry } from './api';
-import { createEntry } from './aux';
 
 module.exports.createEntry = function(type, id='', order='', content=null, hint=null, mode='edit', rule='2') {
     if (type == 1) {
         if (mode == 'edit')
-            var element = '<div class="entry open-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_visible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
+            var element = ` <div class="entry open-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="hint-btn"><i class="fa fa-life-bouy"></i></div>
+                                    <div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div>
+                                    <div class="hidden-entry is_visible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div>
+                                    <div class="delete"><i class="fa fa-trash"></i></div>
+                                </div>
+                            </div>`;
         else
-            var element = '<div class="entry open-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea></div><div class="entry-menu"></div></div>';
-
-        window.order++;
+            var element = ` <div class="entry open-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea>
+                                </div>
+                                <div class="entry-menu"></div>
+                            </div>`;
 
         var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
@@ -20,15 +35,36 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
 
         $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
-        _save_entry(newElement);
+        return newElement;
     }
     if (type == 2) {
         if (mode == 'edit')
-            var element = '<div class="entry hidden-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_invisible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
+            var element = ` <div class="entry hidden-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="hint-btn"><i class="fa fa-life-bouy"></i></div>
+                                    <div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div>
+                                    <div class="hidden-entry is_invisible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div>
+                                    <div class="delete"><i class="fa fa-trash"></i></div>
+                                </div>
+                            </div>`;
         else
-            var element = '<div class="entry hidden-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
-
-        window.order++;
+            var element = ` <div class="entry hidden-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="show-hidden"><i class="fa fa-undo"></i></div>
+                                </div>
+                            </div>`;
 
         var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
@@ -43,15 +79,38 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
 
         $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
-        _save_entry(newElement);
+        return newElement;
     }
     if (type == 3) {
         if (mode == 'edit')
-            var element = '<div class="entry prompt-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
+            var element = ` <div class="entry prompt-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div>
+                                    <div class="hint-btn"><i class="fa fa-life-bouy"></i></div>
+                                    <div class="type-entry is_text"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div>
+                                    <div class="delete"><i class="fa fa-trash"></i></div>
+                                </div>
+                            </div>`;
         else
-            var element = '<div class="entry prompt-text" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea><textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
-
-        window.order++;
+            var element = ` <div class="entry prompt-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea>
+                                    <textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div>
+                                    <div class="show-hidden"><i class="fa fa-undo"></i></div>
+                                </div>
+                            </div>`;
 
         var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
@@ -70,15 +129,31 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
 
         $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
-        _save_entry(newElement);
+        return newElement;
     }
     if (type == 4) {
         if (mode == 'edit')
-            var element = '<div class="entry open-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_visible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
+            var element = ` <div class="entry open-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="hint-btn"><i class="fa fa-life-bouy"></i></div>
+                                    <div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div>
+                                    <div class="hidden-entry is_visible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div>
+                                    <div class="delete"><i class="fa fa-trash"></i></div>
+                                </div>
+                            </div>`;
         else
-            var element = '<div class="entry open-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea></div><div class="entry-menu"></div></div>';
-
-        window.order++;
+            var element = ` <div class="entry open-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea>
+                                </div>
+                                <div class="entry-menu"></div>
+                            </div>`;
 
         var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
@@ -88,15 +163,36 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
 
         $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
-        _save_entry(newElement);
+        return newElement;
     }
     if (type == 5) {
         if (mode == 'edit')
-            var element = '<div class="entry hidden-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="hidden-entry is_invisible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
+            var element = ` <div class="entry hidden-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="hint-btn"><i class="fa fa-life-bouy"></i></div>
+                                    <div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div>
+                                    <div class="hidden-entry is_invisible"><i class="visible fa fa-eye"></i><i class="invisible fa fa-eye-slash"></i></div>
+                                    <div class="delete"><i class="fa fa-trash"></i></div>
+                                </div>
+                            </div>`;
         else
-            var element = '<div class="entry hidden-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
-
-        window.order++;
+            var element = ` <div class="entry hidden-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="show-hidden"><i class="fa fa-undo"></i></div>
+                                </div>
+                            </div>`;
 
         var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
@@ -111,15 +207,38 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
 
         $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
-        _save_entry(newElement);
+        return newElement;
     }
     if (type == 6) {
         if (mode == 'edit')
-            var element = '<div class="entry prompt-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="hint-btn"><i class="fa fa-life-bouy"></i></div><div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div><div class="delete"><i class="fa fa-trash"></i></div></div></div>';
+            var element = ` <div class="entry prompt-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div>
+                                    <div class="hint-btn"><i class="fa fa-life-bouy"></i></div>
+                                    <div class="type-entry is_code"><i class="text fa fa-pencil"></i><i class="code fa fa-code"></i></div>
+                                    <div class="delete"><i class="fa fa-trash"></i></div>
+                                </div>
+                            </div>`;
         else
-            var element = '<div class="entry prompt-code" data-entry-order="' + order + '" data-entry-type="' + type + '" data-entry-id="' + id + '" data-entry-rule="' + rule + '"><div class="textarea gl_input"><textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea><textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea></div><div class="hint"><input type="text" name="hint" placeholder="This is a place for some hints..."></div><div class="entry-menu"><div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div><div class="show-hidden"><i class="fa fa-undo"></i></div></div></div>';
-
-        window.order++;
+            var element = ` <div class="entry prompt-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+                                <div class="textarea gl_input">
+                                    <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea>
+                                    <textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea>
+                                </div>
+                                <div class="hint">
+                                    <input type="text" name="hint" placeholder="This is a place for some hints...">
+                                </div>
+                                <div class="entry-menu">
+                                    <div class="rule-btn"><i class="fa fa-birthday-cake"></i><i class="fa fa-puzzle-piece"></i><i class="fa fa-gavel"></i></div>
+                                    <div class="show-hidden"><i class="fa fa-undo"></i></div>
+                                </div>
+                            </div>`;
 
         var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
@@ -138,7 +257,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
 
         $(newElement).find('.entry-textarea').css('height', $(newElement).find('.entry-textarea').outerHeight() + 15);
 
-        _save_entry(newElement);
+        return newElement;
     }
 };
 
