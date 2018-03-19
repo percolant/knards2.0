@@ -12,7 +12,6 @@ var uglifycss            = require('gulp-uglifycss');
 var browserify           = require('browserify');
 var jshint               = require('gulp-jshint');
 var stylish              = require('jshint-stylish');
-var uglify               = require('gulp-uglify');
 var babelify             = require('babelify');
 var source               = require('vinyl-source-stream');
 var buffer               = require('vinyl-buffer');
