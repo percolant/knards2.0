@@ -349,24 +349,26 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
             if (data[0].score.length != 0) {
                 var revise_date = new Date(data[0].score[0].revise_date);
                 $('#card-stats-revise-date').text(formatDate(revise_date));
-                revision = data[0].score[0].id;
+                var revision_id = data[0].score[0].id;
             } else {
                 $('#card-stats-revise-date').text('Never');
             }
 
-            queue++;
-            _get_card(host, data[0].id, revising).then(() => {
-                queue--;
-                if (queue <= 0) {
-                    $('.spinner').removeClass('lc_show');
-                    $('.done').addClass('lc_show');
-                };
-            }).catch(() => {
-                $('.spinner').removeClass('lc_show');
-                $('.fail').addClass('lc_show');
-                queue = 0;
-                window.location.replace('/list/');
-            });
+            // queue++;
+            // _get_card(host, data[0].id, revising).then((res) => {
+            //     queue--;
+            //     if (queue <= 0) {
+            //         $('.spinner').removeClass('lc_show');
+            //         $('.done').addClass('lc_show');
+            //     };
+            // }).catch(() => {
+            //     $('.spinner').removeClass('lc_show');
+            //     $('.fail').addClass('lc_show');
+            //     queue = 0;
+            //     // window.location.replace('/list/');
+            // });
+
+            return {'card_id': data[0].id, 'revision_id': revision_id, 'revising': revising}
         }
     }
 };
@@ -392,6 +394,7 @@ async function _get_card(host, card_id, revising=false) {
             }
         }
     });
+    console.log(data);
 
     // Fill in the card name
     $('.card-name_input').text(data.title);
@@ -424,7 +427,7 @@ async function _get_card(host, card_id, revising=false) {
                 break;
             }
         }
-
+    console.log(entries_sorted);
     // Populate the respective area with entries in the right order (we start our from 1 because we don't have order0)
     for (let i = 1; i <= data.entries.length; i++) {
         if (!window.location.pathname.includes('revise')) {
@@ -460,6 +463,32 @@ async function _get_card(host, card_id, revising=false) {
         return tagsIncluded;
     else
         return undefined;
+};
+
+async function _save_score(host, tag_name) {
+    $('.done').removeClass('lc_show');
+    $('.fail').removeClass('lc_show');
+    $('.spinner').addClass('lc_show');
+
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+
+    let data = await $.ajax({
+        url: host + '/api/tags/',
+        method: 'GET'
+    });
+
+    var tag_id = 0;
+    for (let i = 0; i < data.length; i++)
+        if (tag_name == data[i].tag_name) tag_id = data[i].id;
+    await $.ajax({
+        url: host + '/api/tags/' + tag_id + '/',
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
 };
 
 module.exports._create_new_card = _create_new_card;

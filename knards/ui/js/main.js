@@ -9,4 +9,4 @@ var host = 'http://0.0.0.0:8000';
 initNew(host);
 initEdit(host);
 initList(host);
-// initRevise(host);
+initRevise(host);

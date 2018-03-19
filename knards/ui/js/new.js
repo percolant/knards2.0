@@ -24,6 +24,7 @@ module.exports.initNew = function(host) {
                             $('.done').addClass('lc_show');
                         };
                     }).catch(() => {
+                        alert('test');
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
                         queue = 0;

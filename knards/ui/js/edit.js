@@ -8,7 +8,7 @@ module.exports.initEdit = function(host) {
         var card_id;
         var queue = 0;
         var tagsIncluded = [];
-        var order = 0;
+        var order = 1;
 
         card_id = window.location.pathname.replace('/edit/', '');
         card_id = card_id.replace('/', '');
@@ -43,6 +43,8 @@ module.exports.initEdit = function(host) {
                             $('.done').addClass('lc_show');
                         };
                     }).catch(() => {
+                        alert('test');
+                        
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
                         queue = 0;
