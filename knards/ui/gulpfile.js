@@ -10,9 +10,8 @@ var rename               = require('gulp-rename');
 var uglifycss            = require('gulp-uglifycss');
 
 var browserify           = require('browserify');
-var jshint               = require('gulp-jshint');
+var eslint               = require('gulp-eslint');
 var stylish              = require('jshint-stylish');
-var uglify               = require('gulp-uglify');
 var babelify             = require('babelify');
 var source               = require('vinyl-source-stream');
 var buffer               = require('vinyl-buffer');
@@ -55,8 +54,9 @@ gulp.task('sass', function() {
 gulp.task('lint', function() {
     console.log('\r\n>>>>>>>>>>>> RELOAD <<<<<<<<<<<<<');
     return gulp.src(config.js.input)
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
+        .pipe(eslint())
+        .pipe(eslint.format());
+        // .pipe(eslint.failAfterError());
 });
 
 gulp.task('scripts', ['lint'], function() {
