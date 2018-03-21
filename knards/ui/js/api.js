@@ -7,7 +7,7 @@ async function _create_new_card(host, tags) {
 
     var is_private = $('#checkbox-private').is(':checked');
     var is_creator_hidden = $('#checkbox-hide-creator').is(':checked');
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     let data = await $.ajax({
         url: host + '/api/cards/',
@@ -27,7 +27,7 @@ async function _create_new_card(host, tags) {
     });
 
     return data.id;
-};
+}
 
 async function _save_card_meta(host, card_id, tags) {
     $('.done').removeClass('lc_show');
@@ -36,9 +36,9 @@ async function _save_card_meta(host, card_id, tags) {
 
     var is_private = $('#checkbox-private').is(':checked');
     var is_creator_hidden = $('#checkbox-hide-creator').is(':checked');
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
-    let data = await $.ajax({
+    await $.ajax({
         url: host + '/api/cards/' + card_id + '/',
         method: 'PUT',
         data: JSON.stringify({
@@ -54,16 +54,14 @@ async function _save_card_meta(host, card_id, tags) {
         },
         dataType: 'json'
     });
-};
+}
 
 async function _delete_card(host, card_id) {
     $('.done').removeClass('lc_show');
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var is_private = $('#checkbox-private').is(':checked');
-    var is_creator_hidden = $('#checkbox-hide-creator').is(':checked');
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     await $.ajax({
         url: host + '/api/cards/' + card_id + '/',
@@ -74,14 +72,14 @@ async function _delete_card(host, card_id) {
             'Content-Type': 'application/json'
         }
     });
-};
+}
 
 async function _save_entry(host, element, card_id) {
     $('.done').removeClass('lc_show');
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     var rule = 1;
     if (!element.is('[data-entry-rule]')) rule = 1;
@@ -130,14 +128,14 @@ async function _save_entry(host, element, card_id) {
 
         return $(element).attr('data-entry-id');
     }
-};
+}
 
 async function _delete_entry(host, element_id) {
     $('.done').removeClass('lc_show');
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     await $.ajax({
         url: host + '/api/entries/' + element_id + '/',
@@ -148,14 +146,14 @@ async function _delete_entry(host, element_id) {
             'Content-Type': 'application/json'
         }
     });
-};
+}
 
 async function _save_tags(host, card_id, tags) {
     $('.done').removeClass('lc_show');
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     await $.ajax({
         url: host + '/api/tags/',
@@ -171,14 +169,14 @@ async function _save_tags(host, card_id, tags) {
         },
         dataType: 'json'
     });
-};
+}
 
 async function _clean_up_tag(host, tag_name) {
     $('.done').removeClass('lc_show');
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     let data = await $.ajax({
         url: host + '/api/tags/',
@@ -197,7 +195,7 @@ async function _clean_up_tag(host, tag_name) {
             'Content-Type': 'application/json'
         }
     });
-};
+}
 
 async function _get_cards_list(host, page, sort, mode, tags_included, tags_excluded, tags_included_strict, date_create_from, date_create_to, date_edit_from, date_edit_to) {
     $('.done').removeClass('lc_show');
@@ -206,7 +204,7 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
 
     if (date_create_to) date_create_to = addADay(date_create_to);
     if (date_edit_to) date_edit_to = addADay(date_edit_to);
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
     let data = await $.ajax({
         url: host + '/api/cards-rendered/',
@@ -246,10 +244,10 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
     });
 
     if (mode == 'list') {
-        var create_date;
-        var edit_date;
-        var tags;
-        var element;
+        let create_date;
+        let edit_date;
+        let tags;
+        let element;
         for (let i = 0; i < data.length; i++) {
             create_date = new Date(data[i].create_date);
             edit_date = new Date(data[i].update_date);
@@ -265,29 +263,25 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
         $('#list-stats-total').text(data.length);
 
         // Calculate the percentage of cards created by user
-        var created_by_you = 0;
-        var created_by_others = 0;
-        var know = 0;
-        var dont_know = 0;
+        let created_by_you = 0;
+        let know = 0;
         for (let i = 0; i < data.length; i++) {
             if (data[i].user.id == user_id) created_by_you++;
-            else created_by_others++;
 
-            if (data[i].score.length == 0) dont_know++;
-            else if (data[i].score[0].is_right) know++;
-            else if (!data[i].score[0].is_right) dont_know++;
+            if (data[i].score.length != 0)
+                if (data[i].score[0].is_right) know++;
         }
         $('#list-stats-created-by-you').text(String(Math.round(Math.round((((created_by_you / data.length) * 100)) * 100) / 10) / 10) + '%');
         $('#list-stats-are-right').text(String(Math.round(Math.round((((know / data.length) * 100)) * 100) / 10) / 10) + '%');
 
-        var revision_dates = [];
-        var today = new Date();
+        let revision_dates = [];
+        let today = new Date();
         today = today.setHours(0,0,0,0);
-        var to_revise = 0;
-        var not_yet_revised = false;
+        let to_revise = 0;
+        let not_yet_revised = false;
         for (let i = 0; i < data.length; i++) {
             if (data[i].score.length != 0) {
-                var revise_date = new Date(data[i].score[0].revise_date);
+                let revise_date = new Date(data[i].score[0].revise_date);
                 revision_dates.push(revise_date.getTime());
                 if (today > revise_date.getTime()) to_revise++;
             } else {
@@ -310,11 +304,12 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
             $('#list-stats-amount-to-revise').text(data.length);
         }
     } else if (mode == 'revise-run') {
+        var data_not_serial;
         try {
-            var data_not_serial = JSON.parse(data);
+            data_not_serial = JSON.parse(data);
         }
         catch(err) {
-            var data_not_serial = {"results": "cards"};
+            data_not_serial = {'results': 'cards'};
         }
         if (data_not_serial.results == 'no cards') {
             $('.card-name_input').text('');
@@ -346,10 +341,11 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
             $('#card-stats-count-seen').text(data[0].count_seen);
             $('#card-stats-count-know').text(data[0].count_know);
 
+            var revision_id;
             if (data[0].score.length != 0) {
-                var revise_date = new Date(data[0].score[0].revise_date);
+                let revise_date = new Date(data[0].score[0].revise_date);
                 $('#card-stats-revise-date').text(formatDate(revise_date));
-                var revision_id = data[0].score[0].id;
+                revision_id = data[0].score[0].id;
             } else {
                 $('#card-stats-revise-date').text('Never');
             }
@@ -368,10 +364,10 @@ async function _get_cards_list(host, page, sort, mode, tags_included, tags_exclu
             //     // window.location.replace('/list/');
             // });
 
-            return {'card_id': data[0].id, 'revision_id': revision_id, 'revising': revising}
+            return {'card_id': data[0].id, 'revision_id': revision_id, 'revising': revising};
         }
     }
-};
+}
 
 async function _get_card(host, card_id, revising=false) {
     if (card_id === undefined) {
@@ -383,8 +379,6 @@ async function _get_card(host, card_id, revising=false) {
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-
     let data = await $.ajax({
         url: host + '/api/cards-rendered/' + card_id + '/',
         method: 'GET',
@@ -394,14 +388,14 @@ async function _get_card(host, card_id, revising=false) {
             }
         }
     });
-    console.log(data);
 
     // Fill in the card name
     $('.card-name_input').text(data.title);
 
     // Fill in tags if not revising
+    var tagsIncluded;
     if (!revising) {
-        var tagsIncluded = [];
+        tagsIncluded = [];
         for (let i = 0; i < data.tags.length; i++) {
             // visuals
             $('<span class="gl_tag-include">' + data.tags[i].tag_name + '</span>').insertBefore($('#tags-selector').closest('.easy-autocomplete'));
@@ -427,7 +421,7 @@ async function _get_card(host, card_id, revising=false) {
                 break;
             }
         }
-    console.log(entries_sorted);
+
     // Populate the respective area with entries in the right order (we start our from 1 because we don't have order0)
     for (let i = 1; i <= data.entries.length; i++) {
         if (!window.location.pathname.includes('revise')) {
@@ -463,33 +457,57 @@ async function _get_card(host, card_id, revising=false) {
         return tagsIncluded;
     else
         return undefined;
-};
+}
 
-async function _save_score(host, tag_name) {
+async function _save_score(host, card_id, revision_id, proc='running') {
     $('.done').removeClass('lc_show');
     $('.fail').removeClass('lc_show');
     $('.spinner').addClass('lc_show');
 
-    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
 
-    let data = await $.ajax({
-        url: host + '/api/tags/',
-        method: 'GET'
+    var is_right = true;
+    $('[data-check]').each(function() {
+        if ($(this).attr('data-check') == '0') is_right = false;
     });
+    if ($('[data-check]').length != $('.prompt-textarea').length) is_right = false;
 
-    var tag_id = 0;
-    for (let i = 0; i < data.length; i++)
-        if (tag_name == data[i].tag_name) tag_id = data[i].id;
-    await $.ajax({
-        url: host + '/api/tags/' + tag_id + '/',
-        method: 'DELETE',
-        headers: {
-            'X-CSRFToken': csrftoken,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-    });
-};
+    // Check if we're create a new entry or updating an existing one
+    if (revision_id === undefined)
+        await $.ajax({
+            url: host + '/api/scores/',
+            method: 'POST',
+            data: JSON.stringify({
+                card: card_id,
+                is_right: is_right
+            }),
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            dataType: 'json'
+        });
+    else
+        await $.ajax({
+            url: host + '/api/scores/' + revision_id + '/',
+            method: 'PUT',
+            data: JSON.stringify({
+                card: card_id,
+                is_right: is_right
+            }),
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            dataType: 'json'
+        });
+
+    if (proc == 'last') {
+        window.location.replace('/revise/');
+    }
+}
 
 module.exports._create_new_card = _create_new_card;
 module.exports._save_card_meta = _save_card_meta;
@@ -500,3 +518,4 @@ module.exports._save_tags = _save_tags;
 module.exports._clean_up_tag = _clean_up_tag;
 module.exports._get_cards_list = _get_cards_list;
 module.exports._get_card = _get_card;
+module.exports._save_score = _save_score;

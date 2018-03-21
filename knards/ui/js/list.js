@@ -5,12 +5,10 @@ import { _get_cards_list, _delete_card } from './api';
 
 module.exports.initList = function(host) {
     if (window.location.pathname.includes('list')) {
-        var card_id;
         var queue = 0;
         var tagsIncluded = [];
         var tagsIncludedStrict = [];
         var tagsExcluded = [];
-        var order = 1;
         var page = 1;
         var sort = 'edit_date_desc';
         var mode = 'list';
@@ -21,7 +19,7 @@ module.exports.initList = function(host) {
             if (queue <= 0) {
                 $('.spinner').removeClass('lc_show');
                 $('.done').addClass('lc_show');
-            };
+            }
         }).catch(() => {
             $('.spinner').removeClass('lc_show');
             $('.fail').addClass('lc_show');
@@ -36,7 +34,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -63,7 +61,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -80,7 +78,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -97,7 +95,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -114,7 +112,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -124,7 +122,7 @@ module.exports.initList = function(host) {
 
         var options = {
             url: host + '/api/tags/?format=json',
-            getValue: "tag_name",
+            getValue: 'tag_name',
             list: {
                 match: {
                     enabled: true
@@ -145,16 +143,16 @@ module.exports.initList = function(host) {
                             if (queue <= 0) {
                                 $('.spinner').removeClass('lc_show');
                                 $('.done').addClass('lc_show');
-                            };
+                            }
                         }).catch(() => {
                             $('.spinner').removeClass('lc_show');
                             $('.fail').addClass('lc_show');
                             queue = 0;
                         });
                     }
-        	    }
+                }
             },
-            theme: "square"
+            theme: 'square'
         };
 
         // Various handlers for tags-selector
@@ -179,7 +177,7 @@ module.exports.initList = function(host) {
                         if (queue <= 0) {
                             $('.spinner').removeClass('lc_show');
                             $('.done').addClass('lc_show');
-                        };
+                        }
                     }).catch(() => {
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
@@ -203,7 +201,7 @@ module.exports.initList = function(host) {
                         if (queue <= 0) {
                             $('.spinner').removeClass('lc_show');
                             $('.done').addClass('lc_show');
-                        };
+                        }
                     }).catch(() => {
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
@@ -213,7 +211,7 @@ module.exports.initList = function(host) {
             }
         });
 
-        $(document).on("click", '.gl_tag-include', function() {
+        $(document).on('click', '.gl_tag-include', function() {
             tagsIncluded.splice(tagsIncluded.indexOf($(this).html()), 1);
             $(this).removeClass('gl_tag-include');
 
@@ -229,7 +227,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -237,7 +235,7 @@ module.exports.initList = function(host) {
             });
         });
 
-        $(document).on("click", '.gl_tag-include-strict', function() {
+        $(document).on('click', '.gl_tag-include-strict', function() {
             tagsIncludedStrict.splice(tagsIncludedStrict.indexOf($(this).html()), 1);
             $(this).removeClass('gl_tag-include-strict');
 
@@ -253,7 +251,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -261,7 +259,7 @@ module.exports.initList = function(host) {
             });
         });
 
-        $(document).on("click", '.gl_tag-exclude', function() {
+        $(document).on('click', '.gl_tag-exclude', function() {
             tagsExcluded.splice(tagsExcluded.indexOf($(this).html()), 1);
             $(this).remove();
 
@@ -274,7 +272,7 @@ module.exports.initList = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -282,14 +280,14 @@ module.exports.initList = function(host) {
             });
         });
 
-        $(document).on("click", '.delete', function() {
+        $(document).on('click', '.delete', function() {
             queue++;
             _delete_card(host, $(this).closest('.card_wrp').attr('data-card-id')).then(() => {
                 queue--;
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -315,7 +313,7 @@ module.exports.initList = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -340,7 +338,7 @@ module.exports.initList = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -365,7 +363,7 @@ module.exports.initList = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -390,7 +388,7 @@ module.exports.initList = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');

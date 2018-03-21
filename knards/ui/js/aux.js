@@ -1,11 +1,10 @@
 var autosize = require('autosize');
 
-import { _save_entry } from './api';
-
 module.exports.createEntry = function(type, id='', order='', content=null, hint=null, mode='edit', rule='2') {
     if (type == 1) {
+        let element;
         if (mode == 'edit')
-            var element = ` <div class="entry open-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry open-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea>
                                 </div>
@@ -20,14 +19,14 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
         else
-            var element = ` <div class="entry open-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry open-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea>
                                 </div>
                                 <div class="entry-menu"></div>
                             </div>`;
 
-        var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
+        let newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
 
         autosize($(newElement).find('.entry-textarea'));
@@ -38,8 +37,9 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         return newElement;
     }
     if (type == 2) {
+        let element;
         if (mode == 'edit')
-            var element = ` <div class="entry hidden-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry hidden-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..."></textarea>
                                 </div>
@@ -54,7 +54,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
         else
-            var element = ` <div class="entry hidden-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry hidden-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your text here..." disabled></textarea>
                                 </div>
@@ -66,7 +66,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
 
-        var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
+        let newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
         if (hint) {
             $(newElement).addClass('open-hint');
@@ -82,8 +82,9 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         return newElement;
     }
     if (type == 3) {
+        let element;
         if (mode == 'edit')
-            var element = ` <div class="entry prompt-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+            element = ` <div class="entry prompt-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea>
                                 </div>
@@ -98,7 +99,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
         else
-            var element = ` <div class="entry prompt-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+            element = ` <div class="entry prompt-text" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea>
                                     <textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea>
@@ -112,7 +113,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
 
-        var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
+        let newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
         if (hint) {
             $(newElement).addClass('open-hint');
@@ -132,8 +133,9 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         return newElement;
     }
     if (type == 4) {
+        let element;
         if (mode == 'edit')
-            var element = ` <div class="entry open-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry open-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea>
                                 </div>
@@ -148,14 +150,14 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
         else
-            var element = ` <div class="entry open-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry open-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea>
                                 </div>
                                 <div class="entry-menu"></div>
                             </div>`;
 
-        var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
+        let newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
 
         autosize($(newElement).find('.entry-textarea'));
@@ -166,8 +168,9 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         return newElement;
     }
     if (type == 5) {
+        let element;
         if (mode == 'edit')
-            var element = ` <div class="entry hidden-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry hidden-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..."></textarea>
                                 </div>
@@ -182,7 +185,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
         else
-            var element = ` <div class="entry hidden-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
+            element = ` <div class="entry hidden-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter your code here..." disabled></textarea>
                                 </div>
@@ -194,7 +197,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
 
-        var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
+        let newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
         if (hint) {
             $(newElement).addClass('open-hint');
@@ -210,8 +213,9 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
         return newElement;
     }
     if (type == 6) {
+        let element;
         if (mode == 'edit')
-            var element = ` <div class="entry prompt-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+            element = ` <div class="entry prompt-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..."></textarea>
                                 </div>
@@ -226,7 +230,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
         else
-            var element = ` <div class="entry prompt-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
+            element = ` <div class="entry prompt-code" data-entry-order="${order}" data-entry-type="${type}" data-entry-id="${id}" data-entry-rule="${rule}">
                                 <div class="textarea gl_input">
                                     <textarea class="entry-textarea" rows="3" placeholder="Enter the answer here..." disabled></textarea>
                                     <textarea class="prompt-textarea shown" rows="3" placeholder="Enter the answer here..."></textarea>
@@ -240,7 +244,7 @@ module.exports.createEntry = function(type, id='', order='', content=null, hint=
                                 </div>
                             </div>`;
 
-        var newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
+        let newElement = $(element).insertAfter($('.entries_wrp > [class*="entry"]:last-child'));
         if (content) $(newElement).find('.entry-textarea').val(content);
         if (hint) {
             $(newElement).addClass('open-hint');
@@ -283,18 +287,18 @@ module.exports.deleteLoadedEntries = function() {
 
 module.exports.checkAnswer = function(element) {
     if ($(element).attr('data-entry-rule') == '1') {
-        var trial = $(element).find('.prompt-textarea').val();
-        var answer = $(element).find('.entry-textarea').val();
+        let trial = $(element).find('.prompt-textarea').val();
+        let answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
-        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        let trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        let answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
         $(element).find('.gl_input').removeClass('gl_input-red');
         $(element).find('.gl_input').removeClass('gl_input-red');
 
-        var check = 0;
+        let check = 0;
         if (trial_fix.length >= answer_fix.length) {
             for (let i = 0; i < trial_fix.length; i++) {
                 if (!answer_fix.includes(trial_fix[i])) check++;
@@ -305,7 +309,7 @@ module.exports.checkAnswer = function(element) {
             }
         }
 
-        var check_percent = Math.ceil(answer_fix.length - (0.6 * answer_fix.length));
+        let check_percent = Math.ceil(answer_fix.length - (0.6 * answer_fix.length));
 
         if (check >= check_percent) {
             $(element).find('.gl_input').addClass('gl_input-red');
@@ -321,20 +325,20 @@ module.exports.checkAnswer = function(element) {
         autosize($(element).find('.entry-textarea'));
         autosize.update($(element).find('.entry-textarea'));
         return true;
-    };
+    }
     if ($(element).attr('data-entry-rule') == '2') {
-        var trial = $(element).find('.prompt-textarea').val();
-        var answer = $(element).find('.entry-textarea').val();
+        let trial = $(element).find('.prompt-textarea').val();
+        let answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
-        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        let trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        let answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
         $(element).find('.gl_input').removeClass('gl_input-red');
         $(element).find('.gl_input').removeClass('gl_input-red');
 
-        var check = 0;
+        let check = 0;
         if (trial_fix.length >= answer_fix.length) {
             for (let i = 0; i < trial_fix.length; i++) {
                 if (!answer_fix.includes(trial_fix[i])) check++;
@@ -345,7 +349,7 @@ module.exports.checkAnswer = function(element) {
             }
         }
 
-        var check_percent = Math.ceil(answer_fix.length - (0.9 * answer_fix.length));
+        let check_percent = Math.ceil(answer_fix.length - (0.9 * answer_fix.length));
 
         if (check >= check_percent) {
             $(element).find('.gl_input').addClass('gl_input-red');
@@ -361,13 +365,13 @@ module.exports.checkAnswer = function(element) {
         autosize($(element).find('.entry-textarea'));
         autosize.update($(element).find('.entry-textarea'));
         return true;
-    };
+    }
     if ($(element).attr('data-entry-rule') == '3') {
-        var trial = $(element).find('.prompt-textarea').val();
-        var answer = $(element).find('.entry-textarea').val();
+        let trial = $(element).find('.prompt-textarea').val();
+        let answer = $(element).find('.entry-textarea').val();
 
-        var trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
-        var answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        let trial_fix = trial.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
+        let answer_fix = answer.toLowerCase().replace(/\t|\r\n|\n|\.|,|"|'|!/g, ' ').replace(/\s+/g, ' ').trim();
         trial_fix = trial_fix.split(' ');
         answer_fix = answer_fix.split(' ');
 
@@ -380,7 +384,7 @@ module.exports.checkAnswer = function(element) {
             return false;
         }
 
-        var check = 0;
+        let check = 0;
         for (let i = 0; i < trial_fix.length; i++) {
             if (!answer_fix.includes(trial_fix[i])) check++;
         }
@@ -399,23 +403,23 @@ module.exports.checkAnswer = function(element) {
         autosize($(element).find('.entry-textarea'));
         autosize.update($(element).find('.entry-textarea'));
         return true;
-    };
+    }
 };
 
 module.exports.formatDate = function(date) {
-  var monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-  ];
+    var monthNames = [
+        'January', 'February', 'March',
+        'April', 'May', 'June', 'July',
+        'August', 'September', 'October',
+        'November', 'December'
+    ];
 
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
 
-  return day + ' ' + monthNames[monthIndex] + ' ' + year;
-}
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+};
 
 module.exports.addADay = function(date_to) {
     var date_old = new Date(date_to);

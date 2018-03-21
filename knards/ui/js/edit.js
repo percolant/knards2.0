@@ -18,7 +18,7 @@ module.exports.initEdit = function(host) {
             if (queue <= 0) {
                 $('.spinner').removeClass('lc_show');
                 $('.done').addClass('lc_show');
-            };
+            }
             if (res !== undefined) tagsIncluded = res;
             $('.entry').each(function() {
                 order++;
@@ -30,7 +30,7 @@ module.exports.initEdit = function(host) {
             window.location.replace('/list/');
         });
 
-        $("#sortable").sortable({
+        $('#sortable').sortable({
             revert: true,
             update: function() {
                 recountEntryOrder();
@@ -41,10 +41,10 @@ module.exports.initEdit = function(host) {
                         if (queue <= 0) {
                             $('.spinner').removeClass('lc_show');
                             $('.done').addClass('lc_show');
-                        };
+                        }
                     }).catch(() => {
                         alert('test');
-                        
+
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
                         queue = 0;
@@ -79,7 +79,7 @@ module.exports.initEdit = function(host) {
                         if (queue <= 0) {
                             $('.spinner').removeClass('lc_show');
                             $('.done').addClass('lc_show');
-                        };
+                        }
                     }).catch(() => {
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
@@ -91,7 +91,7 @@ module.exports.initEdit = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -109,7 +109,7 @@ module.exports.initEdit = function(host) {
                         if (queue <= 0) {
                             $('.spinner').removeClass('lc_show');
                             $('.done').addClass('lc_show');
-                        };
+                        }
                     }).catch(() => {
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
@@ -121,7 +121,7 @@ module.exports.initEdit = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -139,7 +139,7 @@ module.exports.initEdit = function(host) {
                         if (queue <= 0) {
                             $('.spinner').removeClass('lc_show');
                             $('.done').addClass('lc_show');
-                        };
+                        }
                     }).catch(() => {
                         $('.spinner').removeClass('lc_show');
                         $('.fail').addClass('lc_show');
@@ -151,7 +151,7 @@ module.exports.initEdit = function(host) {
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -159,7 +159,7 @@ module.exports.initEdit = function(host) {
             });
         });
 
-        $(document).on("click", '.gl_tag-include', function() {
+        $(document).on('click', '.gl_tag-include', function() {
             if (tagsIncluded.length > 0) {
                 var tag_name = $(this).text();
                 tagsIncluded.splice(tagsIncluded.indexOf($(this).text()), 1);
@@ -175,7 +175,7 @@ module.exports.initEdit = function(host) {
                             if (queue <= 0) {
                                 $('.spinner').removeClass('lc_show');
                                 $('.done').addClass('lc_show');
-                            };
+                            }
                         }).catch(() => {
                             $('.spinner').removeClass('lc_show');
                             $('.fail').addClass('lc_show');
@@ -187,7 +187,7 @@ module.exports.initEdit = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -200,7 +200,7 @@ module.exports.initEdit = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -211,7 +211,7 @@ module.exports.initEdit = function(host) {
 
         var options = {
             url: host + '/api/tags/?format=json',
-            getValue: "tag_name",
+            getValue: 'tag_name',
             list: {
                 match: {
                     enabled: true
@@ -231,7 +231,7 @@ module.exports.initEdit = function(host) {
                                 if (queue <= 0) {
                                     $('.spinner').removeClass('lc_show');
                                     $('.done').addClass('lc_show');
-                                };
+                                }
                             }).catch(() => {
                                 $('.spinner').removeClass('lc_show');
                                 $('.fail').addClass('lc_show');
@@ -241,7 +241,7 @@ module.exports.initEdit = function(host) {
                     }
                 }
             },
-            theme: "square"
+            theme: 'square'
         };
 
         // Various handlers for tags-selector
@@ -264,7 +264,7 @@ module.exports.initEdit = function(host) {
                             if (queue <= 0) {
                                 $('.spinner').removeClass('lc_show');
                                 $('.done').addClass('lc_show');
-                            };
+                            }
                         }).catch(() => {
                             $('.spinner').removeClass('lc_show');
                             $('.fail').addClass('lc_show');
@@ -291,7 +291,7 @@ module.exports.initEdit = function(host) {
                                     if (queue <= 0) {
                                         $('.spinner').removeClass('lc_show');
                                         $('.done').addClass('lc_show');
-                                    };
+                                    }
                                 }).catch(() => {
                                     $('.spinner').removeClass('lc_show');
                                     $('.fail').addClass('lc_show');
@@ -303,7 +303,7 @@ module.exports.initEdit = function(host) {
                             if (queue <= 0) {
                                 $('.spinner').removeClass('lc_show');
                                 $('.done').addClass('lc_show');
-                            };
+                            }
                         }).catch(() => {
                             $('.spinner').removeClass('lc_show');
                             $('.fail').addClass('lc_show');
@@ -316,7 +316,7 @@ module.exports.initEdit = function(host) {
                             if (queue <= 0) {
                                 $('.spinner').removeClass('lc_show');
                                 $('.done').addClass('lc_show');
-                            };
+                            }
                         }).catch(() => {
                             $('.spinner').removeClass('lc_show');
                             $('.fail').addClass('lc_show');
@@ -332,34 +332,8 @@ module.exports.initEdit = function(host) {
         // Create a new entry on btn click
         $('.new-entry-prompt').on('click', function() {
             if (card_id === undefined) {
-                queue++;
-                _create_new_card(host, tagsIncluded).then((res) => {
-                    card_id = res;
-                    queue--;
-                    if (queue <= 0) {
-                        $('.spinner').removeClass('lc_show');
-                        $('.done').addClass('lc_show');
-                    };
-                    var newEntryElement = createEntry(3, '', order);
-                    queue++;
-                    _save_entry(host, newEntryElement, card_id).then((res) => {
-                        queue--;
-                        if (queue <= 0) {
-                            $('.spinner').removeClass('lc_show');
-                            $('.done').addClass('lc_show');
-                        };
-                        $(newEntryElement).attr('data-entry-id', res);
-                    }).catch(() => {
-                        $('.spinner').removeClass('lc_show');
-                        $('.fail').addClass('lc_show');
-                        queue = 0;
-                    });
-                    order++;
-                }).catch(() => {
-                    $('.spinner').removeClass('lc_show');
-                    $('.fail').addClass('lc_show');
-                    queue = 0;
-                });
+                alert('Unknown error! Card wasn\'t loaded');
+                window.location.replace('/list/');
             } else {
                 var newEntryElement = createEntry(3, '', order);
                 queue++;
@@ -368,7 +342,7 @@ module.exports.initEdit = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                     $(newEntryElement).attr('data-entry-id', res);
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
@@ -382,34 +356,8 @@ module.exports.initEdit = function(host) {
         // Create a new entry on btn click
         $('.new-entry-text').on('click', function() {
             if (card_id === undefined) {
-                queue++;
-                _create_new_card(host, tagsIncluded).then((res) => {
-                    card_id = res;
-                    queue--;
-                    if (queue <= 0) {
-                        $('.spinner').removeClass('lc_show');
-                        $('.done').addClass('lc_show');
-                    };
-                    var newEntryElement = createEntry(1, '', order);
-                    queue++;
-                    _save_entry(host, newEntryElement, card_id).then((res) => {
-                        queue--;
-                        if (queue <= 0) {
-                            $('.spinner').removeClass('lc_show');
-                            $('.done').addClass('lc_show');
-                        };
-                        $(newEntryElement).attr('data-entry-id', res);
-                    }).catch(() => {
-                        $('.spinner').removeClass('lc_show');
-                        $('.fail').addClass('lc_show');
-                        queue = 0;
-                    });
-                    order++;
-                }).catch(() => {
-                    $('.spinner').removeClass('lc_show');
-                    $('.fail').addClass('lc_show');
-                    queue = 0;
-                });
+                alert('Unknown error! Card wasn\'t loaded');
+                window.location.replace('/list/');
             } else {
                 var newEntryElement = createEntry(1, '', order);
                 queue++;
@@ -418,7 +366,7 @@ module.exports.initEdit = function(host) {
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                     $(newEntryElement).attr('data-entry-id', res);
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
@@ -439,12 +387,12 @@ module.exports.initEdit = function(host) {
 
             // Delete entry from DB
             queue++;
-            _delete_entry(host, element_id).then((res) => {
+            _delete_entry(host, element_id).then(() => {
                 queue--;
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -455,12 +403,12 @@ module.exports.initEdit = function(host) {
             $('.entry').each(function() {
                 var element = $(this);
                 queue++;
-                _save_entry(host, element, card_id).then((res) => {
+                _save_entry(host, element, card_id).then(() => {
                     queue--;
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -472,12 +420,12 @@ module.exports.initEdit = function(host) {
         // Save entry on textarea change
         $(document).on('blur', '.entry-textarea', function() {
             queue++;
-            _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+            _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                 queue--;
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -503,12 +451,12 @@ module.exports.initEdit = function(host) {
                 }
 
                 queue++;
-                _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+                _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                     queue--;
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -529,12 +477,12 @@ module.exports.initEdit = function(host) {
                 }
 
                 queue++;
-                _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+                _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                     queue--;
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -560,12 +508,12 @@ module.exports.initEdit = function(host) {
                 if (has_hint) $(this).parent().parent().attr('class', $(this).parent().parent().attr('class') + ' open-hint');
 
                 queue++;
-                _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+                _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                     queue--;
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -585,12 +533,12 @@ module.exports.initEdit = function(host) {
                 if (has_hint) $(this).parent().parent().attr('class', $(this).parent().parent().attr('class') + ' open-hint');
 
                 queue++;
-                _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+                _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                     queue--;
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -606,12 +554,12 @@ module.exports.initEdit = function(host) {
             else if ($(this).parent().parent().attr('data-entry-rule') == '3') $(this).parent().parent().attr('data-entry-rule', '1');
 
             queue++;
-            _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+            _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                 queue--;
                 if (queue <= 0) {
                     $('.spinner').removeClass('lc_show');
                     $('.done').addClass('lc_show');
-                };
+                }
             }).catch(() => {
                 $('.spinner').removeClass('lc_show');
                 $('.fail').addClass('lc_show');
@@ -635,12 +583,12 @@ module.exports.initEdit = function(host) {
                 $(this).parent().removeClass('lc_show');
             } else {
                 queue++;
-                _save_entry(host, $(this).parent().parent(), card_id).then((res) => {
+                _save_entry(host, $(this).parent().parent(), card_id).then(() => {
                     queue--;
                     if (queue <= 0) {
                         $('.spinner').removeClass('lc_show');
                         $('.done').addClass('lc_show');
-                    };
+                    }
                 }).catch(() => {
                     $('.spinner').removeClass('lc_show');
                     $('.fail').addClass('lc_show');
@@ -659,7 +607,7 @@ module.exports.initEdit = function(host) {
                 var end = this.selectionEnd;
 
                 // set textarea value to: text before caret + tab + text after caret
-                $(this).val($(this).val().substring(0, start) + "\t" + $(this).val().substring(end));
+                $(this).val($(this).val().substring(0, start) + '\t' + $(this).val().substring(end));
 
                 // put caret at right position again
                 this.selectionStart =
