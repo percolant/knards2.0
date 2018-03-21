@@ -11,7 +11,6 @@ var uglifycss            = require('gulp-uglifycss');
 
 var browserify           = require('browserify');
 var eslint               = require('gulp-eslint');
-var stylish              = require('jshint-stylish');
 var babelify             = require('babelify');
 var source               = require('vinyl-source-stream');
 var buffer               = require('vinyl-buffer');
